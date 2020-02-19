@@ -10,6 +10,7 @@ function addOption(data){
 	}
 }
 
+//하단 버튼 클릭시 아래로 슬라이드 메뉴 내려옴
 $(document).ready(function() {
 	$('#down_btn').click(function(){
 		if($(".factory_container3").css("display") == "none"){
@@ -20,6 +21,19 @@ $(document).ready(function() {
 	})
 });
 
+
+//오른쪽 버튼 클릭시 오른쪽으로 슬라이드 메뉴 보여짐
+$(document).ready(function() {
+	$('#right_btn').click(function(){
+		if($(".slider_container").css("display") == "none"){
+			$(".button_container").animate({scrollLeft: '200px'});
+		    $(".slider_container").show('slide',{direction:'left'},1000);
+		} else {
+			$(".button_container").animate({right: '0px'}, 1000);
+		    $(".slider_container").show('hide',{direction:'right'},1000);
+		}
+	})
+});
 
 $(document).ready(function() {
     $(".js-example-basic-single").on('change', function() {
@@ -72,7 +86,8 @@ function moveMap(data){
 	for(var i = 0; i < data.length; i++){
 		var LAT = data[i]["GPS_LAT"]
 		var LONG = data[i]["GPS_LONG"]	
-		positions.push({content: "<div class='dotOverlay distanceInfo'>위도 : "+LAT+"</br> 경도 : "+LONG+"</div>", latlng: new kakao.maps.LatLng(LAT, LONG)}) //마커 배열
+		positions.push({content: "<div class='dotOverlay distanceInfo'><span class='head_span'>"+(i+1)+"번째 경유지</span> <br>위도 : <span class='number'>"+LAT+"</span></br> 경도 : <span class='number'>"
+			+LONG+"</span></div>", latlng: new kakao.maps.LatLng(LAT, LONG)}) //마커 배열
 		linePath.push(new kakao.maps.LatLng(LAT, LONG))//라인 배열
 	}
 
