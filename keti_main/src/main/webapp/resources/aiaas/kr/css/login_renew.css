@@ -716,7 +716,7 @@
 	background-color: #E3E1D9;
 }
 
-.button_container{position: absolute; top:50%; right:0px; z-index: 2; background-color: #F9F9F9; width: 200px; border-radius: 4px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 15px;}
+.button_container{position: absolute; top:50%; right:0px; z-index: 2; }
 
 .slider_container{position: absolute; overflow-y: auto; overflow-x: auto; display:none; top:90px; right:0px; z-index: 2; background-color: #F9F9F9; width: 200px; height:100%; border-radius: 4px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 15px;}
 
@@ -731,3 +731,23 @@
 .distanceInfo {position:relative;top:5px;list-style:none;margin-bottom:23px;}
 .distanceInfo .label {display:inline-block;width:50px;}
 .distanceInfo:after {content:none;}
+
+.marker {
+    width: 24px ;
+    height: 24px ;
+	border-radius: 50% 50% 50% 0;
+  	background: #FF0000;
+  	transform: rotate(-45deg);
+    -webkit-backface-visibility: hidden ;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+.marker .number {
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

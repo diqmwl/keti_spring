@@ -26,11 +26,11 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#right_btn').click(function(){
 		if($(".slider_container").css("display") == "none"){
-			$(".button_container").animate({scrollLeft: '200px'});
-		    $(".slider_container").show('slide',{direction:'left'},1000);
+			$(".button_container").animate({right:'200px'},1000)
+		    $(".slider_container").animate({width:'toggle'},1000);
 		} else {
-			$(".button_container").animate({right: '0px'}, 1000);
-		    $(".slider_container").show('hide',{direction:'right'},1000);
+			$(".button_container").animate({right:'0px'},1000)
+		    $(".slider_container").animate({width:'toggle'},1000);
 		}
 	})
 });
@@ -83,11 +83,15 @@ function moveMap(data){
       
 	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption) //이미지 옵션 만듬
 	
+	/*
+	positions.push({content: "<div class='dotOverlay distanceInfo'><span class='head_span'>"+(i+1)+"번째 경유지</span> <br>위도 : <span class='number'>"+LAT+"</span></br> 경도 : <span class='number'>"
+		+LONG+"</span></div>", latlng: new kakao.maps.LatLng(LAT, LONG)}) //마커 배열
+	*/
+	
 	for(var i = 0; i < data.length; i++){
 		var LAT = data[i]["GPS_LAT"]
 		var LONG = data[i]["GPS_LONG"]	
-		positions.push({content: "<div class='dotOverlay distanceInfo'><span class='head_span'>"+(i+1)+"번째 경유지</span> <br>위도 : <span class='number'>"+LAT+"</span></br> 경도 : <span class='number'>"
-			+LONG+"</span></div>", latlng: new kakao.maps.LatLng(LAT, LONG)}) //마커 배열
+		positions.push({content: "<div class='marker'><div class='number'>"+(i+1)+"</div></div>", latlng: new kakao.maps.LatLng(LAT, LONG)}) //마커가될 커스텀 오버레이 배열
 		linePath.push(new kakao.maps.LatLng(LAT, LONG))//라인 배열
 	}
 
@@ -98,21 +102,22 @@ function moveMap(data){
 	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 	    strokeStyle: 'solid' // 선의 스타일입니다
 	});
-	console.log(polyline.getLength())
 	polylines.push(polyline)
 	
 	polyline.setMap(map); //선 그림
 	
 	for (var i = 0; i < positions.length; i ++) {
 	    // 마커를 생성합니다
-	    var marker = new kakao.maps.Marker({
+	    var marker = new kakao.maps.CustomOverlay({ //커스텀 오버레이로 마커 만든다
 	        map: map, // 마커를 표시할 지도
 	        position: positions[i].latlng, // 마커의 위치
-	        image: markerImage
+	        content: positions[i].content,
+	        yAnchor: 1
 	    });
 	    
 	    markers.push(marker)//마커 저장
 	    
+	    /*
 	    // 마커에 표시할 인포윈도우를 생성합니다 
 	    var CustomOverlay = new kakao.maps.CustomOverlay({
 	        content: positions[i].content, // 인포윈도우에 표시할 내용
@@ -127,6 +132,7 @@ function moveMap(data){
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, CustomOverlay));
 	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(CustomOverlay));
+	    */
 	}
 
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
