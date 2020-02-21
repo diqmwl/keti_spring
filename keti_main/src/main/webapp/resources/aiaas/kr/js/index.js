@@ -75,13 +75,6 @@ function moveMap(data){
 	setMarkers(null)
 	
 	var positions = []
-	var linePath = []
-	
-	var imageSrc = '/resources/aiaas/kr/images/marker.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(23, 23), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(15, 15)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption) //이미지 옵션 만듬
 	
 	/*
 	positions.push({content: "<div class='dotOverlay distanceInfo'><span class='head_span'>"+(i+1)+"번째 경유지</span> <br>위도 : <span class='number'>"+LAT+"</span></br> 경도 : <span class='number'>"
@@ -91,20 +84,8 @@ function moveMap(data){
 	for(var i = 0; i < data.length; i++){
 		var LAT = data[i]["GPS_LAT"]
 		var LONG = data[i]["GPS_LONG"]	
-		positions.push({content: "<div class='marker'><div class='number'>"+(i+1)+"</div></div>", latlng: new kakao.maps.LatLng(LAT, LONG)}) //마커가될 커스텀 오버레이 배열
-		linePath.push(new kakao.maps.LatLng(LAT, LONG))//라인 배열
+		positions.push({content: "<div class='marker'><div class='number'>"+(data.length-i)+"</div></div>", latlng: new kakao.maps.LatLng(LAT, LONG)}) //마커가될 커스텀 오버레이 배열
 	}
-
-	var polyline = new kakao.maps.Polyline({
-	    path: linePath, // 선을 구성하는 좌표배열 입니다
-	    strokeWeight: 5, // 선의 두께 입니다
-	    strokeColor: '#FF0000', // 선의 색깔입니다
-	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    strokeStyle: 'solid' // 선의 스타일입니다
-	});
-	polylines.push(polyline)
-	
-	polyline.setMap(map); //선 그림
 	
 	for (var i = 0; i < positions.length; i ++) {
 	    // 마커를 생성합니다
@@ -116,23 +97,6 @@ function moveMap(data){
 	    });
 	    
 	    markers.push(marker)//마커 저장
-	    
-	    /*
-	    // 마커에 표시할 인포윈도우를 생성합니다 
-	    var CustomOverlay = new kakao.maps.CustomOverlay({
-	        content: positions[i].content, // 인포윈도우에 표시할 내용
-	        map: map,
-	        position: marker.getPosition(),
-	        yAnchor: 1 
-	    });
-	    CustomOverlay.setMap(null); //처음에 안보이게 하려고
-	    
-	    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, CustomOverlay));
-	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(CustomOverlay));
-	    */
 	}
 
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
@@ -148,6 +112,29 @@ function moveMap(data){
 	    	CustomOverlay.setMap(null);
 	    };
 	}
+
+}
+
+function lineMap(data){
+	
+	var linePath = []
+	
+	for(var i = 0; i < data.length; i++){
+		var LAT = data[i]["GPS_LAT"]
+		var LONG = data[i]["GPS_LONG"]	
+		linePath.push(new kakao.maps.LatLng(LAT, LONG))//라인 배열
+	}
+
+	var polyline = new kakao.maps.Polyline({
+	    path: linePath, // 선을 구성하는 좌표배열 입니다
+	    strokeWeight: 5, // 선의 두께 입니다
+	    strokeColor: '#FF0000', // 선의 색깔입니다
+	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다
+	});
+	polylines.push(polyline)
+	
+	polyline.setMap(map); //선 그림
 
 }
 

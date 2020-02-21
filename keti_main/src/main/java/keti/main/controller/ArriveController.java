@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import keti.main.model.Arrive_Visit;
 import keti.main.model.Arrive;
 import keti.main.model.Arrive_Car;
 import keti.main.service.ArriveService;
