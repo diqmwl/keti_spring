@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Measurement(name = "VISIT_RULE")
-public class Arrive_Visit implements Arrive {
+public class Arrive_Visit {
 
 	@Column(name = "time")
 	private String time;

@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import keti.main.model.Arrive_Visit;
-import keti.main.model.Arrive;
 import keti.main.model.Arrive_Car;
 import keti.main.service.ArriveService;
 
@@ -24,10 +22,10 @@ public class ArriveController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/get_gps")
-	public List<Arrive> arrive_getGPS(@RequestParam(value = "id") String id,
+	public List<Object> arrive_getGPS(@RequestParam(value = "id") String id,
 			@RequestParam(value = "name") String name,
 			Model model, Principal principal) {
-		List<Arrive> gpsList = arriveService.getGPS(id, name);
+		List<Object> gpsList = arriveService.getGPS(id, name);
 		return gpsList;
 	}
 	

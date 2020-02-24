@@ -4,7 +4,7 @@ import org.influxdb.annotation.Column;
 import org.influxdb.annotation.Measurement;
 
 @Measurement(name = "MAIN2")
-public class Arrive_main implements Arrive{
+public class Arrive_main{
 
 	@Column(name = "time")
 	private String time;
@@ -14,12 +14,6 @@ public class Arrive_main implements Arrive{
 	
 	@Column(name = "GPS_LONG")
 	private String GPS_LONG;
-	
-	@Column(name = "VISIT_END")
-	private String VISIT_END;
-	
-	@Column(name = "VISIT_START")
-	private String VISIT_START;
 	
 	@Column(name = "car_id")
 	private String car_id;
@@ -46,22 +40,6 @@ public class Arrive_main implements Arrive{
 
 	public void setGPS_LONG(String gPS_LONG) {
 		GPS_LONG = gPS_LONG;
-	}
-
-	public String getVISIT_END() {
-		return VISIT_END;
-	}
-
-	public void setVISIT_END(String vISIT_END) {
-		VISIT_END = vISIT_END;
-	}
-
-	public String getVISIT_START() {
-		return VISIT_START;
-	}
-
-	public void setVISIT_START(String vISIT_START) {
-		VISIT_START = vISIT_START;
 	}
 
 	public String getCar_id() {
