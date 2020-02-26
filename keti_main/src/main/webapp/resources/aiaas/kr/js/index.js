@@ -26,11 +26,12 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#right_btn').click(function(){
 		if($(".slider_container").css("display") == "none"){
-			$(".button_container").animate({right:'200px'},1000)
-		    $(".slider_container").animate({width:'toggle'},1000);
+			$(".button_container").animate({right:'480px'},500)
+		    $(".slider_container").animate({width:'toggle'},500);
+		    $(".slider_container").css("display", "table");
 		} else {
-			$(".button_container").animate({right:'0px'},1000)
-		    $(".slider_container").animate({width:'toggle'},1000);
+			$(".button_container").animate({right:'0px'},500)
+		    $(".slider_container").animate({width:'toggle'},500);
 		}
 	})
 });
@@ -38,12 +39,8 @@ $(document).ready(function() {
 $(document).ready(function() {
     $(".js-example-basic-single").on('change', function() {
         var mapnumber = this.value
-        
-        $.get("/arrive/get_car", {mapnumber : mapnumber},
-		// 서버가 필요한 정보를 같이 보냄. 
-		function(data, status) {
-        	addOption(data);
-		}); 
+        getCar(mapnumber)
+        getFactory(mapnumber)
     });
 })
 
@@ -65,6 +62,60 @@ $(document).on('click', '.car_btn', function(){
     		}
     	});
 });
+
+function getCar(mapnumber){
+    $.get("/arrive/get_car", {mapnumber : mapnumber},
+    		// 서버가 필요한 정보를 같이 보냄. 
+    		function(data, status) {
+            	addOption(data);
+    		}); 
+}
+
+function getFactory(mapnumber){
+    $.get("/arrive/get_factory", {mapnumber : mapnumber},
+    		// 서버가 필요한 정보를 같이 보냄. 
+    		function(data, status) {
+    	console.log(data)
+    		drawTable(data);
+    }); 
+}
+
+function drawTable(data){
+	var d = new Date();
+	
+	if(data[0].length){
+	    $('#out_tbody').empty();
+	    
+	    for(var i = 0; i < data[0].length; i++){
+		    var valuestr = "<tr>"
+	    	valuestr += "<th scope='row'>" +data[0][i]['CAR_ID']+ "</th>";
+	    	valuestr += "<td class = 'time'>"+Math.floor((d.getTime()- new Date(data[0][i]['time']).getTime())/1000/60)+"분</td>";
+	    	valuestr += "<td>"+data[0][i]['GPS_LAT']+"</td>";
+	    	valuestr += "<td>"+data[0][i]['GPS_LONG']+"</td>";
+	    	valuestr += "<td>OUT</td>";
+		    valuestr += "</tr>"
+	        $('#out_tbody').append(valuestr)
+	    }	    	
+	}
+	
+	if(data[1].length){
+	    $('#in_tbody').empty();
+	    
+	    for(var i = 0; i < data[1].length; i++){
+		    var valuestr = "<tr>"
+	    	valuestr += "<th scope='row'>" +data[1][i]['CAR_ID']+ "</th>";
+	    	valuestr += "<td class = 'time'>"+Math.floor((d.getTime()- new Date(data[1][i]['time']).getTime())/1000/60)+"분</td>";
+	    	valuestr += "<td>"+data[1][i]['GPS_LAT']+"</td>";
+	    	valuestr += "<td>"+data[1][i]['GPS_LONG']+"</td>";
+	    	valuestr += "<td>IN</td>";
+		    valuestr += "</tr>"
+	        $('#in_tbody').append(valuestr)
+	    }	    	
+	}
+	
+	
+}
+
 
 //배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
 function setMarkers(map) {

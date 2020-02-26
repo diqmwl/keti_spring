@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import keti.main.model.Arrive_Car;
+import keti.main.model.Arrive_Factory;
 import keti.main.service.ArriveService;
 
 @Controller
@@ -34,5 +35,12 @@ public class ArriveController {
 	public List<Arrive_Car> arrive_getCAR(@RequestParam(value = "mapnumber")String mapnumber, Model model, Principal principal) {
 		List<Arrive_Car> arrive = arriveService.getCAR(mapnumber);
 		return arrive;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/get_factory")
+	public List<Object> arrive_getFactory(@RequestParam(value = "mapnumber")String mapnumber, Model model, Principal principal) {
+		List<Object> FactoryList = arriveService.getFactory(mapnumber);
+		return FactoryList;
 	}
 }

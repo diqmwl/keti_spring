@@ -393,9 +393,9 @@
 .stn_landing_cont .item_set ul.item_lst li dl dd.ytb_link a {overflow:hidden; float:left; width:0; height: 18px;/*20190917 mrs 추가*/padding:0 0 0 20px; background:url("../images/ico_youtube_red.png") 0 0 no-repeat; background-size:16px auto; opacity:1.0; transition:all 0.3s ease-out;}
 .stn_landing_cont .item_set ul.item_lst li dl dd.ytb_link a:hover {min-width:60px; width:auto; color:#000; background:url("../images/ico_youtube_red.png") 0 0 no-repeat; background-size:16px auto; opacity:1.0; transition:all 0.3s ease-out;}
 
-.stn_landing_cont .item_set ul.item_lst li dl.ico_tti dd.txt {display:inline-block; float:left; width:136px;}
-.stn_landing_cont .item_set ul.item_lst li dl.ico_tti dd.img {display:inline-block; float:right;}
-.stn_landing_cont .item_set ul.item_lst li dl.ico_tti dd.img img {position:absolute; bottom:8px; right:16px; width:70px;}
+.stn_landing_cont .item_set ul.item_lst li dl.ico_dash dd.txt {display:inline-block; float:left; width:136px;}
+.stn_landing_cont .item_set ul.item_lst li dl.ico_dash dd.img {display:inline-block; float:right;}
+.stn_landing_cont .item_set ul.item_lst li dl.ico_dash dd.img img {position:absolute; bottom:8px; right:16px; width:70px;}
 
 .stn_landing_cont .item_set ul.item_lst li dl.ico_tr dd.txt {display:inline-block; float:left; width:130px;}
 .stn_landing_cont .item_set ul.item_lst li dl.ico_tr dd.img {display:inline-block; float:right;}
@@ -413,8 +413,8 @@
 .stn_landing_cont .item_set ul.item_lst li dl.ico_itf {background:url("../images/ico_lan_itf.svg") 14px 4px no-repeat; background-size: 30px;}
 .stn_landing_cont .item_set ul.item_lst li dl.ico_hmd {background:url("../images/ico_hmd_s.png") 5px 5px no-repeat; background-size:42px auto;}
 .stn_landing_cont .item_set ul.item_lst li dl.ico_nlg {background:url("../images/ico_nlg_s.png") 7px 6px no-repeat; background-size:40px auto;}
-.stn_landing_cont .item_set ul.item_lst li dl.ico_tti {background:url("../images/ico_tti_s.png") 5px 8px no-repeat; background-size:43px auto;}
-.stn_landing_cont .item_set ul.item_lst li dl.ico_dir {background: url(../images/ico_dir_s.png) 10px 3px no-repeat; background-size: 31px auto;}
+.stn_landing_cont .item_set ul.item_lst li dl.ico_dash {background:url("../images/ico_dash.png") 5px 8px no-repeat; background-size:37px auto;}
+.stn_landing_cont .item_set ul.item_lst li dl.ico_pre {background: url(../images/ico_pre.png) 7px 3px no-repeat; background-size: 50px auto;}
 .stn_landing_cont .item_set ul.item_lst li dl.ico_tr  {background:url("../images/ico_tr_s.png")  9px 5px no-repeat; background-size:40px auto;}
 .stn_landing_cont .item_set ul.item_lst li dl.ico_avr {background:url("../images/ico_avr_s.png") 4px 8px no-repeat; background-size:47px auto;}
 
@@ -644,8 +644,8 @@
 	.stn_landing .stn_landing_tit {height:20px;}
 	.stn_landing .stn_landing_tit span {width:auto !important; height:auto !important; padding:0 10px; font-size:14px; line-height:12px;}
 
-	.stn_landing_cont .item_set ul.item_lst li dl.ico_tti dd.txt {display:block; float: none; width:auto;}
-	.stn_landing_cont .item_set ul.item_lst li dl.ico_tti dd.img img {top:12px; width: 50px;}
+	.stn_landing_cont .item_set ul.item_lst li dl.ico_dash dd.txt {display:block; float: none; width:auto;}
+	.stn_landing_cont .item_set ul.item_lst li dl.ico_dash dd.img img {top:12px; width: 50px;}
 	.stn_landing_cont .item_set ul.item_lst li dl.ico_tr dd.txt {display:block; float: none; width:auto;}
 	.stn_landing_cont .item_set ul.item_lst li dl.ico_tr dd.img img {top:12px; width: 100px;}
 
@@ -718,7 +718,7 @@
 
 .button_container{position: absolute; top:50%; right:0px; z-index: 2; }
 
-.slider_container{position: absolute; overflow-y: auto; overflow-x: auto; display:none; top:90px; right:0px; z-index: 2; background-color: #F9F9F9; width: 200px; height:100%; border-radius: 4px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 15px;}
+.slider_container{position: absolute; overflow-y: auto; overflow-x: auto; display:none; top:90px; right:0px; z-index: 2; background-color: #F9F9F9; width: 480px; height:89%; border-radius: 4px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 15px;}
 
 
 /*카카오 CSS*/
@@ -750,4 +750,42 @@
     font-size: 14px;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+/* 테이블 */
+
+.table {
+    margin-bottom: 0px !important;
+}
+
+.table {
+  .thead-light {
+    th {
+      color: $table-head-color;
+      background-color: $table-head-bg;
+      border-color: $table-border-color;
+    }
+  }
+}
+
+.table thead th {
+    font-size: 13px;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.card .table td, .card .table th {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.col{
+	margin-bottom: 20px;
+}
+
+.time{
+	color: #1A73E8;
 }

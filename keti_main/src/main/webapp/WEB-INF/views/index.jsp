@@ -209,11 +209,10 @@
 								<li>
 									<dl class="ico_mrc">
 										<dt>
-											<span>AI 독해</span>
-											<em>Machine Reading Comprehension</em>
+											<span>차량 고장 관리 서비스</span>
+											<em>Vehicle Failure Management Service</em>
 										</dt>
-										<dd>주어진 텍스트를 독해하여 문맥을 이해하고, 질문에 맞는 정답의 위치를 찾아내서 정답을 제공합니다.</dd>
-										<dd class="ytb_link"><a href="https://youtu.be/LKWa40r5RcI" target="_blank" title="유튜브 데모영상 새창으로 이동">데모 영상 보기</a></dd>
+										<dd>차량의 고장 정보와 차량 목록을 관리할 수 있는 관리자용 웹 서비스 입니다.</dd>
 									</dl>
 								</li>
 								<li>
@@ -272,24 +271,21 @@
 							<h4 class="bg_pink">카테고리C</h4>
 							<ul class="item_lst">
 								<li>
-									<dl class="ico_tti">
+									<dl class="ico_dash">
 										<dt>
-											<span>AI 스타일</span>
-											<em>Text-to-Image for fashion</em>
+											<span>차량 정보 시각화 대시보드</span>
+											<em>Vehicle Information Dashboard</em>
 										</dt>
-										<dd class="txt">패션에 대한 설명 텍스트를 입력하면 이를 이미지로 생성해 냅니다.</dd>
-										<dd class="img"><img src="/aiaas/kr/images/img_tti_sample.png" alt="패션에 대한 설명 텍스트를 입력하면 이를 이미지로 생성해 냅니다."></dd>
-										<dd class="ytb_link"><a href="https://youtu.be/7Q88bh2Qqro" target="_blank" title="유튜브 데모영상 새창으로 이동">데모 영상 보기</a></dd>
+										<dd>차량에 대한 정보를 대시보드를 통해 자유롭게 시각화 합니다.</dd>
 									</dl>
 								</li>
 								<li>
-									<dl class="ico_dir">
+									<dl class="ico_pre">
 										<dt>
-											<span>문서 이미지 분석</span>
-											<em>Document Image Analysis <br>Recognition and Learning</em>
+											<span>차량 고장 예측 및 분석</span>
+											<em>Vehicle Failure Prediction And Analysis</em>
 										</dt>
-										<dd>각 나라 별 화폐, 고지서 또는 병원 진료비 계산서·영수증의 이미지를 활용하여 정보를 분석해줍니다.</dd>
-										<dd class="ytb_link"><a href="https://youtu.be/42lr3dy36s8" target="_blank" title="유튜브 데모영상 새창으로 이동">데모 영상 보기</a></dd>
+										<dd>차량 DTC 분석을 통해 고장을 예측하고 분석하여 대시보드 형태로 제공합니다.</dd>
 									</dl>
 								</li>
 								<li>

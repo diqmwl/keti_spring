@@ -129,12 +129,79 @@ $(document).ready(function() {
 				
 				<div id="map" style="width:100%;height: 89%;"></div>
 			
-			<div class="slider">
 				<div class="button_container">
 				
 				<button id="right_btn"><img style="width: 40px; height: 40px; alt="" src="${pageContext.request.contextPath}/resources/aiaas/kr/images/menu.png"></button></div>
-				<div class="slider_container">담긴 화면</div>
-			</div>
+				
+				<div class="slider_container">
+				
+				<div style="display: table-cell; vertical-align: middle; overflow: auto;">
+					
+					<div style="text-align: left">
+						<p class="fac_h3">외부 차량</p>
+					</div>
+					
+					
+					<div class="col">
+			          <div class="card shadow">
+			            <div class="table-responsive">
+			              <table class="table align-items-center table-flush">
+			                <thead class="thead-light">
+			                  <tr>
+			                    <th scope="col">차량번호</th>
+			                    <th scope="col">시간</th>
+			                    <th scope="col">위도</th>
+			                    <th scope="col">경도</th>
+			                    <th scope="col">지역</th>
+			                  </tr>
+			                </thead>
+			                <tbody id="out_tbody">
+			                  <tr>
+			                    <th scope="row">
+			                    	<span class="mb-0 text-sm">차량 목록이 없습니다</span>
+			                    </th>
+			                  </tr>
+			                
+			                </tbody>
+			              </table>
+			            </div>
+			          </div>
+			        </div>
+
+					<div style="text-align: left">
+						<p class="fac_h3">내부 차량</p>
+					</div>
+					
+					
+					<div class="col">
+			          <div class="card shadow">
+			            <div class="table-responsive">
+			              <table class="table align-items-center table-flush">
+			                <thead class="thead-light">
+			                  <tr>
+			                    <th scope="col">차량번호</th>
+			                    <th scope="col">시간</th>
+			                    <th scope="col">위도</th>
+			                    <th scope="col">경도</th>
+			                    <th scope="col">지역</th>
+			                  </tr>
+			                </thead>
+			                <tbody id="in_tbody">
+			                  <tr>
+			                    <th scope="row">
+			                    	<span class="mb-0 text-sm">차량 목록이 없습니다</span>
+			                    </th>
+			                  </tr>
+			                
+			                </tbody>
+			              </table>
+			            </div>
+			          </div>
+			        </div>
+
+				
+				</div>
+				</div>
 		</div>
 
 
@@ -143,6 +210,9 @@ $(document).ready(function() {
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b40d0ca1587123c7c621e51a6845c4b"></script>
 	<script>
+		getCar(1);
+        getFactory(1);
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.582421893160976, 127.01039872239114), // 지도의 중심좌표

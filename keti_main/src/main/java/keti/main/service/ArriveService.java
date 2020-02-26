@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import keti.main.dao.ArriveDAO;
 import keti.main.model.Arrive_Car;
+import keti.main.model.Arrive_Factory;
 
 @Service
 public class ArriveService {
@@ -21,5 +22,10 @@ public class ArriveService {
 	public List<Arrive_Car> getCAR(String mapnum) {
 		// TODO Auto-generated method stub
 		return arriveDAO.getCAR(mapnum);
+	}
+
+	public List<Object> getFactory(String mapnum) {
+		// TODO Auto-generated method stub
+		return arriveDAO.getFactory(mapnum);
 	}
 }
