@@ -1,5 +1,6 @@
 var markers = [] // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
 var polylines = [] // 지도에 표시된 라인 객체를 가지고 있을 배열입니다
+var before_id = null;
 
 function addOption(data){
 	$(".factory_container3").empty();
@@ -26,9 +27,8 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#right_btn').click(function(){
 		if($(".slider_container").css("display") == "none"){
-			$(".button_container").animate({right:'480px'},500)
+			$(".button_container").animate({right:'482px'},500)
 		    $(".slider_container").animate({width:'toggle'},500);
-		    $(".slider_container").css("display", "table");
 		} else {
 			$(".button_container").animate({right:'0px'},500)
 		    $(".slider_container").animate({width:'toggle'},500);
@@ -48,6 +48,8 @@ $(document).on('click', '.car_btn', function(){
 	var id = $(this).attr('id')
     var name = $(this).attr('name')
     
+    fill_elements(id);
+	
     setMarkers(null);
     $.get("/arrive/get_gps", {id : id, name : name},
 		// 서버가 필요한 정보를 같이 보냄. 
@@ -62,6 +64,16 @@ $(document).on('click', '.car_btn', function(){
     		}
     	});
 });
+
+function fill_elements(id){
+	$("button[id="+before_id+"]").parents("tr").css('backgroundColor','#ffffd4');
+	$("th[name="+before_id+"]").parents("tr").css('backgroundColor','#ffffff');
+	
+    before_id = id;
+
+	$("button[id="+id+"]").parents("tr").css('backgroundColor','#ffffd4');
+	$("th[name="+id+"]").parents("tr").css('backgroundColor','#ffffd4');
+}
 
 function getCar(mapnumber){
     $.get("/arrive/get_car", {mapnumber : mapnumber},
@@ -83,12 +95,14 @@ function getFactory(mapnumber){
 function drawTable(data){
 	var d = new Date();
 	
+    $('#out_tbody').empty();	
+    $('#in_tbody').empty();
+
 	if(data[0].length){
-	    $('#out_tbody').empty();
 	    
 	    for(var i = 0; i < data[0].length; i++){
 		    var valuestr = "<tr>"
-	    	valuestr += "<th scope='row'>" +data[0][i]['CAR_ID']+ "</th>";
+	    	valuestr += "<th scope='row' name='"+data[0][i]['CAR_ID']+"'>" +data[0][i]['CAR_ID']+ "</th>";
 	    	valuestr += "<td class = 'time'>"+Math.floor((d.getTime()- new Date(data[0][i]['time']).getTime())/1000/60)+"분</td>";
 	    	valuestr += "<td>"+data[0][i]['GPS_LAT']+"</td>";
 	    	valuestr += "<td>"+data[0][i]['GPS_LONG']+"</td>";
@@ -99,11 +113,10 @@ function drawTable(data){
 	}
 	
 	if(data[1].length){
-	    $('#in_tbody').empty();
 	    
 	    for(var i = 0; i < data[1].length; i++){
 		    var valuestr = "<tr>"
-	    	valuestr += "<th scope='row'>" +data[1][i]['CAR_ID']+ "</th>";
+		    	valuestr += "<th scope='row' name='"+data[1][i]['CAR_ID']+"'>" +data[1][i]['CAR_ID']+ "</th>";
 	    	valuestr += "<td class = 'time'>"+Math.floor((d.getTime()- new Date(data[1][i]['time']).getTime())/1000/60)+"분</td>";
 	    	valuestr += "<td>"+data[1][i]['GPS_LAT']+"</td>";
 	    	valuestr += "<td>"+data[1][i]['GPS_LONG']+"</td>";

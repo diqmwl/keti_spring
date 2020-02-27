@@ -1,6 +1,7 @@
 package keti.main.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.influxdb.InfluxDB;
@@ -59,13 +60,17 @@ public class ArriveDAO {
 
 		InfluxDB influxDB = InfluxDBFactory.connect("http://125.140.110.217:8999" , "tinyos", "tinyos");
 		influxDB.setDatabase("SAMPYO_MONIT");
-		QueryResult queryResult = influxDB.query(new Query("select * from DEPARTUREARRIVAL where BASE_NUM = "+mapnum+" AND LOC_NUM = 0", "SAMPYO_MONIT"));
+
+		QueryResult queryResult = influxDB.query(new Query("select * from (select * from DEPARTUREARRIVAL group by car_id order by time desc limit 1) where BASE_NUM = "+Integer.parseInt(mapnum)+" and LOC_NUM = 0 group by car_id order by time desc", "SAMPYO_MONIT"));
 		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
 		List<Arrive_Factory> outList = resultMapper.toPOJO(queryResult, Arrive_Factory.class);		
-		
-		queryResult = influxDB.query(new Query("select * from DEPARTUREARRIVAL where BASE_NUM = "+mapnum+" AND LOC_NUM = "+mapnum, "SAMPYO_MONIT"));
+				
+		queryResult = influxDB.query(new Query("select * from (select * from DEPARTUREARRIVAL group by car_id order by time desc limit 1) where BASE_NUM = "+Integer.parseInt(mapnum)+" and LOC_NUM = "+Integer.parseInt(mapnum)+" group by car_id order by time desc", "SAMPYO_MONIT"));
 		resultMapper = new InfluxDBResultMapper();
 		List<Arrive_Factory> inList = resultMapper.toPOJO(queryResult, Arrive_Factory.class);		
+	
+		Collections.sort(outList);
+		Collections.sort(inList);
 		
 		FactoryList.add(outList);
 		FactoryList.add(inList);

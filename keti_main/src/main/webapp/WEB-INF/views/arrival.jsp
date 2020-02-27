@@ -127,7 +127,7 @@ $(document).ready(function() {
 				<div class="factory_container3">
 				</div>
 				
-				<div id="map" style="width:100%;height: 89%;"></div>
+				<div id="map" style="width:100%;height: 98%;"></div>
 			
 				<div class="button_container">
 				
@@ -135,7 +135,7 @@ $(document).ready(function() {
 				
 				<div class="slider_container">
 				
-				<div style="display: table-cell; vertical-align: middle; overflow: auto;">
+				<div style="vertical-align: middle; overflow: auto;">
 					
 					<div style="text-align: left">
 						<p class="fac_h3">외부 차량</p>

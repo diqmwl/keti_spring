@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Measurement(name = "DEPARTUREARRIVAL")
-public class Arrive_Factory {
+public class Arrive_Factory implements Comparable<Arrive_Factory> {
 
 	@Column(name = "time")
 	private String time;
@@ -95,5 +95,11 @@ public class Arrive_Factory {
 
 	public void setCar_id(String car_id) {
 		this.car_id = car_id;
+	}
+
+	@Override
+	public int compareTo(Arrive_Factory arrive_Factory) {
+		// TODO Auto-generated method stub
+		return arrive_Factory.time.compareTo(this.time);
 	}
 }
